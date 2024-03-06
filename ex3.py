@@ -1,12 +1,24 @@
 #Lista de itens disponiveis
+import os
 produtos = {
-    "camisa": 50.00,
-    "celular": 1.200,
-    "cubo magico": 30.00,
-    "garfo": 15.00,
-    "copo": 12.00,
-    "pão": 5.00,
-    "teclado": 80.00,
+    "camisa": 50,
+    "celular": 1200,
+    "cubo magico": 30,
+    "garfo": 3,
+    "copo": 12,
+    "teclado": 80,
+    "bola": 75,
+    "garrafa": 40,
+    "chuteira": 120,
+    "monitor": 350,
+    "computador": 2000,
+    "oculos": 300,
+    "uniforme": 120,
+    "fone": 25,
+    "luva": 50,
+    "sabonete": 3,
+    "panela": 60,
+    "coca cola": 12
 }
 
 class Compras:
@@ -30,9 +42,8 @@ class Compras:
                 continue
             quantidade = int(input("Digite a quantidade de {}: ".format(produto)))
             self.carrinho[produto] = self.carrinho.get(produto, 0) + quantidade
-            print("-" * 30)
+            os.system("cls")
             print("{} ({}) adicionado ao carrinho.".format(produto, quantidade))
-            print("-" * 30)
             break
 
     def visualizar_carrinho(self):
@@ -41,9 +52,8 @@ class Compras:
         for produto, quantidade in self.carrinho.items():
             preco = produtos[produto]
             total_item = quantidade * preco
-            print("-" * 30)
+            os.system("cls")
             print("{0}: {1} x R$ {2:.2f} = R$ {3:.2f}".format(produto, quantidade, preco, total_item))
-            print("-" * 30)
 
     def remover_produto(self):
         #Remove os itens desejados e sua quantidade do carrinho, caso digite sair o usuario voltara para a tela de seleção, caso digite um item que não esta no carrinho o sistema avisará que este item não esta no carrinho, caso o usuario decida tirar mais itens que estão no carrinho o sistema informara que não a essa quantidade de itens no carrinho
@@ -61,6 +71,7 @@ class Compras:
             self.carrinho[produto] -= quantidade_remover
             if self.carrinho[produto] == 0:
                 del self.carrinho[produto]
+            os.system("cls")
             print("{} unidades de {} removidas do carrinho.".format(quantidade_remover, produto))
             break
 
@@ -71,8 +82,8 @@ class Compras:
             preco = produtos[produto]
             total_item = quantidade * preco
             total += total_item
+            os.system("cls")
         print("Total a pagar: R$ {:.2f}".format(total))
-
 
 compras = Compras()
 
