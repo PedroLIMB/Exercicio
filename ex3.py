@@ -42,7 +42,7 @@ class Compras:
             preco = produtos[produto]
             total_item = quantidade * preco
             print("-" * 30)
-            print("{0}: {1} x R$ {2:.2f} = R$ {2:.2f}".format(produto, quantidade, preco, total_item))
+            print("{0}: {1} x R$ {2:.2f} = R$ {3:.2f}".format(produto, quantidade, preco, total_item))
             print("-" * 30)
 
     def remover_produto(self):
