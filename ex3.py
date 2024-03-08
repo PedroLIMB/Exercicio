@@ -20,12 +20,12 @@ produtos = {
     "panela": 60,
     "coca cola": 12
 }
-
+ 
 class Compras:
-
+ 
     def __init__(self):
         self.carrinho = {}
-
+ 
     def adicionar_produto(self):
         while True:
             #Listara os produtos disponiveis para a compra
@@ -45,7 +45,7 @@ class Compras:
             os.system("cls")
             print("{} ({}) adicionado ao carrinho.".format(produto, quantidade))
             break
-
+ 
     def visualizar_carrinho(self):
         #Permite a visualização dos itens que estão no carrinho junto com o preço total de tudo
         print("Carrinho de Compras:")
@@ -54,7 +54,7 @@ class Compras:
             total_item = quantidade * preco
             os.system("cls")
             print("{0}: {1} x R$ {2:.2f} = R$ {3:.2f}".format(produto, quantidade, preco, total_item))
-
+ 
     def remover_produto(self):
         #Remove os itens desejados e sua quantidade do carrinho, caso digite sair o usuario voltara para a tela de seleção, caso digite um item que não esta no carrinho o sistema avisará que este item não esta no carrinho, caso o usuario decida tirar mais itens que estão no carrinho o sistema informara que não a essa quantidade de itens no carrinho
         while True:
@@ -74,7 +74,7 @@ class Compras:
             os.system("cls")
             print("{} unidades de {} removidas do carrinho.".format(quantidade_remover, produto))
             break
-
+ 
     def calcular_total(self):
         #calcula o total a pagar
         total = 0
@@ -84,37 +84,38 @@ class Compras:
             total += total_item
             os.system("cls")
         print("Total a pagar: R$ {:.2f}".format(total))
-
-compras = Compras()
-
-while True:
+ 
+def main():
+    compras = Compras()
+ 
+    while True:
     #Menu de seleção
-    print("*" * 30)
-    print("Bem vindo ao carrinho de compras")
-    print("Opções:")
-    print("1 - Adicionar produto ao carrinho")
-    print("2 - Ver carrinho")
-    print("3 - Remover produto do carrinho")
-    print("4 - Calcular total")
-    print("5 - Sair")
-    print("*" * 30)
-
-    opcao = input("Escolha uma opção: ")
-
-    if opcao == "1":
-        compras.adicionar_produto()
-
-    elif opcao == "2":
-        compras.visualizar_carrinho()
-
-    elif opcao == "3":
-        compras.remover_produto()
-
-    elif opcao == "4":
-        compras.calcular_total()
-
-    elif opcao == "5":
-        break
-
-    else:
-        print("Opção inválida. Tente novamente.")
+            print("*" * 30)
+            print("Bem vindo ao carrinho de compras")
+            print("Opções:")
+            print("1 - Adicionar produto ao carrinho")
+            print("2 - Ver carrinho")
+            print("3 - Remover produto do carrinho")
+            print("4 - Calcular total")
+            print("5 - Sair")
+            print("*" * 30)
+ 
+            opcao = input("Escolha uma opção: ")
+ 
+            if opcao == "1":
+                compras.adicionar_produto()
+ 
+            elif opcao == "2":
+                compras.visualizar_carrinho()
+ 
+            elif opcao == "3":
+                compras.remover_produto()
+ 
+            elif opcao == "4":
+                compras.calcular_total()
+ 
+            elif opcao == "5":
+                break
+ 
+if __name__ == '__main__':
+    main()
