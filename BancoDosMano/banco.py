@@ -1,5 +1,5 @@
 import sqlite3
-
+import customtkinter
 
 class Conta():
     def __init__(self, nome, saldo): 
@@ -24,12 +24,16 @@ class Banco():
 
         try:
 
-            self.cursor.execute("INSERT INTO banco (nome, saldo) VALUES (?, ?)", (self.conta.nome, self.conta.saldo,))
+            if not isinstance(self.conta.saldo, (int, float)) or not isinstance(self.conta.nome, (str)):
+                print("nome ou saldo errados")
+        
+            else:
+                self.cursor.execute("INSERT INTO banco (nome, saldo) VALUES (?, ?)", (self.conta.nome, self.conta.saldo,))
 
-            showDatabase = self.cursor.execute("SELECT * FROM banco").fetchall()
-            print(showDatabase)
+                showDatabase = self.cursor.execute("SELECT * FROM banco").fetchall()
+                print(showDatabase)
 
-            self.banco.commit()
+                self.banco.commit()
 
         except sqlite3.Error as err:
             print("erro ao criar conta")
@@ -73,10 +77,28 @@ class Banco():
         finally:
             self.banco.close()
 
-
+class Janela():
+    pass
 
 if __name__ == "__main__":
     banco = Banco()
+    
+    conta01 = Conta("nome", "aaaaaa")
+
+    banco.CriarConta(conta01)
+
+    # janela = customtkinter.CTk()
+    # janela.geometry("700x400")
+    # janela.resizable(width=False, height=False)
+    # janela._set_appearance_mode("dark")
+    # janela.title("Banco UDI")
+
+
+
+    
+ 
+
+    # janela.mainloop()
 
     
 
