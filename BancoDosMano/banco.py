@@ -23,13 +23,16 @@ class Banco():
         self.cursor = self.banco.cursor()
 
         try:
+            
+            if not isinstance(self.conta.saldo, (int, float)) and not isinstance(self.conta.nome, (str)):
+                print("erro nome ou saldo invalido")
+            else:
+                self.cursor.execute("INSERT INTO banco (nome, saldo) VALUES (?, ?)", (self.conta.nome, self.conta.saldo,))
 
-            self.cursor.execute("INSERT INTO banco (nome, saldo) VALUES (?, ?)", (self.conta.nome, self.conta.saldo,))
+                showDatabase = self.cursor.execute("SELECT * FROM banco").fetchall()
+                print(showDatabase)
 
-            showDatabase = self.cursor.execute("SELECT * FROM banco").fetchall()
-            print(showDatabase)
-
-            self.banco.commit()
+                self.banco.commit()
 
         except sqlite3.Error as err:
             print("erro ao criar conta")
@@ -73,10 +76,25 @@ class Banco():
         finally:
             self.banco.close()
 
+    def VerSaldo(self):
+        self.banco = sqlite3.connect("bancoDosMano.db")
+        self.cursor = self.banco.cursor()
+
+        try:
+            showDatabase = self.cursor.execute("SELECT saldo FROM banco").fetchall()
+            print(showDatabase)
+
+        except sqlite3.Error as err:
+            print("erro ao ver saldo")
+        finally:
+            self.banco.close()
+
 
 
 if __name__ == "__main__":
     banco = Banco()
+
+    
 
     
 
