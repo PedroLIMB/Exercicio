@@ -91,6 +91,7 @@ class ContaFrame(ctk.CTkFrame):
     def __init__(self, app):
         super().__init__(app)
         self.app = app  # Salva uma referência ao objeto SistemaBancarioApp
+        self.conta_veri = False
 
         # Labels e entradas para inserir dados da conta e operações
         self.label_titular = ctk.CTkLabel(self, text="Titular da Conta:")
@@ -128,13 +129,19 @@ class ContaFrame(ctk.CTkFrame):
         if titular:
             conta = Conta(titular)
             self.app.banco.CriarConta(conta)
+            self.conta_veri = True
         else:
             messagebox.showerror("Erro", "Por favor, insira o nome do titular da conta.")
 
     # Método para realizar um depósito na conta bancária
     def depositar(self):
-        nome = self.entrada_titular.get()
-        valor = self.entrada_deposito.get()
+
+        if self.conta_veri == True:
+            nome = self.entrada_titular.get()
+            valor = self.entrada_deposito.get()
+        else:
+            messagebox.showerror("aaaaaaaaaaaaaaa")
+
         if nome and valor:
             try:
                 valor = float(valor)

@@ -137,7 +137,7 @@ class ContaFrame(ctk.CTkFrame):
     # Método para realizar um depósito na conta bancária
     def depositar(self):
         # Verificar se a conta foi criada antes de permitir a operação de depósito
-        if self.conta_criada:
+        if self.conta_criada == True:
             nome = self.entrada_titular.get()
             valor = self.entrada_deposito.get()
             if nome and valor:
