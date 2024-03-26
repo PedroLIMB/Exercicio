@@ -137,10 +137,10 @@ class ContaFrame(ctk.CTkFrame):
     def depositar(self):
 
         if self.conta_veri == True:
-            nome = self.entrada_titular.get()
+            nome = self.entrada_titular.get() 
             valor = self.entrada_deposito.get()
         else:
-            messagebox.showerror("aaaaaaaaaaaaaaa")
+            messagebox.showerror("Erro", "Crie uma conta")
 
         if nome and valor:
             try:
