@@ -46,7 +46,7 @@ class TesteIntegracao(unittest.TestCase):
         conta.depositar(50)
         self.assertEqual(conta.consultar_saldo(), 57)
        
-        conta.sacar(50)
+        conta.sacar(60)
         self.assertEqual(conta.consultar_saldo(), 7)
  
 if __name__ == '__main__':
