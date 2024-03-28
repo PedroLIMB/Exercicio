@@ -126,21 +126,30 @@ class ContaFrame(ctk.CTkFrame):
     # Método para criar uma conta bancária com base nos dados inseridos
     def criar_conta(self):
         titular = self.entrada_titular.get()
-        if titular:
-            conta = Conta(titular)
-            self.app.banco.CriarConta(conta)
-            self.conta_veri = True
+        valor_deposito = self.entrada_deposito.get()
+    
+        if titular and valor_deposito:  
+            try:
+                valor_deposito = float(valor_deposito)
+                if valor_deposito > 0:  
+                    conta = Conta(titular, valor_deposito)  
+                    self.app.banco.CriarConta(conta)
+                    self.conta_veri = True
+                else:
+                    messagebox.showerror("Erro", "O valor do depósito inicial deve ser maior que zero.")
+            except ValueError:
+                messagebox.showerror("Erro", "Por favor, insira um valor de depósito inicial válido.")
         else:
-            messagebox.showerror("Erro", "Por favor, insira o nome do titular da conta.")
+            messagebox.showerror("Erro", "Por favor, insira o nome do titular da conta e o valor do depósito inicial.")
 
     # Método para realizar um depósito na conta bancária
     def depositar(self):
-
         if self.conta_veri == True:
             nome = self.entrada_titular.get() 
             valor = self.entrada_deposito.get()
         else:
             messagebox.showerror("Erro", "Crie uma conta")
+            return
 
         if nome and valor:
             try:
